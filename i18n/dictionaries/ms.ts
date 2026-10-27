@@ -10,6 +10,7 @@ const ms: Dictionary = {
     main: "Utama",
     report: "Buat aduan",
     about: "Tentang kami",
+    directory: "Direktori",
   },
   language: {
     label: "Bahasa",
@@ -37,7 +38,7 @@ const ms: Dictionary = {
       },
       {
         title: "Kenali rakan seperjuangan",
-        body: "Direktori NGO dan individu yang sudah lama memperjuangkan jalan yang lebih selamat dan tren yang lebih baik. Akan datang.",
+        body: "Direktori NGO dan individu yang sudah lama memperjuangkan jalan yang lebih selamat dan tren yang lebih baik.",
       },
       {
         title: "Kongsi apa yang anda hadapi",
@@ -99,6 +100,41 @@ const ms: Dictionary = {
       },
     },
   },
+  directory: {
+    title: "Direktori",
+    lead: "Kumpulan, pencipta kandungan dan pemimpin yang sudah lantang bersuara untuk jalan yang lebih selamat dan pengangkutan awam yang lebih baik. Ikuti mereka, belajar daripada mereka dan sokong usaha mereka.",
+    kinds: {
+      groups: "Kumpulan dan NGO",
+      creators: "Pencipta kandungan",
+      officials: "Wakil rakyat dan pegawai",
+      research: "Penyelidikan dan data",
+    },
+    topics: {
+      walking: "Berjalan kaki",
+      cycling: "Berbasikal",
+      transit: "Pengangkutan awam",
+      roadSafety: "Keselamatan jalan raya",
+    },
+    topicsLabel: "Topik",
+    linkTypes: {
+      instagram: "Instagram",
+      tiktok: "TikTok",
+      x: "X",
+      website: "Laman web",
+      news: "Dalam berita",
+    },
+    newTab: "(dibuka dalam tab baharu)",
+    officialsNote: "Penyenaraian wakil rakyat atau pegawai merekodkan kerja awam mereka dalam isu ini. Ia bukan sokongan.",
+    suggest: "Kenal seseorang yang patut disenaraikan di sini? Beritahu kami halaman awam mereka dan bidang yang mereka perjuangkan.",
+    entries: {
+      kerjaJalan: "Jalan kaki berkumpulan untuk meneroka kejiranan, melihat aspek kebolehcapaian dan warisan. Mereka juga membantu penduduk membawa isu laluan pejalan kaki kepada pihak berkuasa tempatan.",
+      bikeCommute: "Penunggang basikal harian dan pakar bandar yang mengendalikan bengkel basikal, kayuhan berkumpulan dan peta, serta mendesak pihak berkuasa tempatan untuk reka bentuk jalan yang lebih selamat.",
+      transit: "Kumpulan rakyat yang sudah lama bersuara untuk pengguna pengangkutan awam di Lembah Klang dan seluruh Malaysia.",
+      driving4dummies: "Video mesra tentang kesilapan memandu harian dan cara yang betul: masuk lorong, bulatan, berhenti untuk pejalan kaki dan membaca papan tanda.",
+      ngSzeHan: "Exco Kerajaan Negeri Selangor bagi pelaburan, perdagangan dan mobiliti. Mengarahkan audit laluan pejalan kaki oleh pihak berkuasa tempatan dan menyifatkan mobiliti sebagai keadilan sosial.",
+      miros: "Institut penyelidikan keselamatan jalan raya kerajaan. Menerbitkan kajian kemalangan dan data keselamatan jalan raya.",
+    },
+  },
   about: {
     title: "Tentang KakiLima",
     lead: "Kaki lima ialah laluan selebar lima kaki di hadapan rumah kedai di Malaysia: ruang untuk pejalan kaki. Hari ini, ia terlalu kerap rosak, dihalang atau langsung tiada.",
@@ -113,7 +149,7 @@ const ms: Dictionary = {
     ],
     whereTitle: "Di mana kami sekarang",
     where:
-      "Kami baru bermula. Buat masa ini, anda boleh mencari saluran rasmi untuk membuat aduan. Direktori pejuang dan ruang awam untuk berkongsi masalah anda akan menyusul.",
+      "Kami baru bermula. Buat masa ini, anda boleh mencari saluran rasmi untuk membuat aduan dan direktori mereka yang sudah lantang bersuara. Ruang awam untuk berkongsi masalah anda akan menyusul.",
   },
 };
 

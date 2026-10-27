@@ -47,6 +47,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             </Link>
             <nav aria-label={dict.nav.main} className="main-nav">
               <Link href={`/${lang}/report`}>{dict.nav.report}</Link>
+              <Link href={`/${lang}/directory`}>{dict.nav.directory}</Link>
               <Link href={`/${lang}/about`}>{dict.nav.about}</Link>
             </nav>
           </div>

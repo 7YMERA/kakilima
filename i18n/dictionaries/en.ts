@@ -1,3 +1,4 @@
+import type { AdvocateId, AdvocateKind, LinkType, Topic } from "@/data/advocates";
 import type { ChannelGroupId, ChannelId } from "@/data/report-channels";
 
 const en = {
@@ -10,6 +11,7 @@ const en = {
     main: "Main",
     report: "Report it",
     about: "About",
+    directory: "Directory",
   },
   language: {
     label: "Language",
@@ -37,7 +39,7 @@ const en = {
       },
       {
         title: "Find your people",
-        body: "A directory of the NGOs and individuals already pushing for safer roads and better trains. Coming soon.",
+        body: "A directory of the NGOs and individuals already pushing for safer roads and better trains.",
       },
       {
         title: "Share what you face",
@@ -99,6 +101,41 @@ const en = {
       },
     } as Record<ChannelId, { runBy: string; use: string }>,
   },
+  directory: {
+    title: "Directory",
+    lead: "The groups, creators and leaders already speaking up for safer streets and better public transport. Follow them, learn from them, and back their work.",
+    kinds: {
+      groups: "Groups and NGOs",
+      creators: "Creators",
+      officials: "Elected leaders and officials",
+      research: "Research and data",
+    } as Record<AdvocateKind, string>,
+    topics: {
+      walking: "Walking",
+      cycling: "Cycling",
+      transit: "Public transport",
+      roadSafety: "Road safety",
+    } as Record<Topic, string>,
+    topicsLabel: "Topics",
+    linkTypes: {
+      instagram: "Instagram",
+      tiktok: "TikTok",
+      x: "X",
+      website: "Website",
+      news: "In the news",
+    } as Record<LinkType, string>,
+    newTab: "(opens in a new tab)",
+    officialsNote: "Listing an elected leader or official records their public work on these issues. It is not an endorsement.",
+    suggest: "Know someone who should be here? Tell us their public page and what they work on.",
+    entries: {
+      kerjaJalan: "Group walks that explore neighbourhoods on foot, looking at accessibility and heritage. They also help residents raise walkability issues with local councils.",
+      bikeCommute: "Commuter cyclists and urbanists running bike kitchens, workshops, group rides and maps, and pushing councils for safer street design.",
+      transit: "A long-running citizens' group that speaks up for public transport users in the Klang Valley and across Malaysia.",
+      driving4dummies: "Friendly videos on everyday driving mistakes and how to get them right: merging, roundabouts, stopping for pedestrians and reading signs.",
+      ngSzeHan: "Selangor state executive councillor for investment, trade and mobility. Has ordered walking audits by local councils and calls mobility a matter of social justice.",
+      miros: "The government's road safety research institute. Publishes crash research and road safety data.",
+    } as Record<AdvocateId, string>,
+  },
   about: {
     title: "About KakiLima",
     lead: "A kaki lima is the five-foot walkway in front of Malaysian shophouses: a space meant for people on foot. Too often today it is broken, blocked or missing entirely.",
@@ -113,7 +150,7 @@ const en = {
     ],
     whereTitle: "Where we are",
     where:
-      "We are just getting started. Right now you can find the official channels to report problems. A directory of advocates and a public space to share what you face are on the way.",
+      "We are just getting started. Right now you can find the official channels to report problems and a directory of people already speaking up. A public space to share what you face is on the way.",
   },
 };
 
