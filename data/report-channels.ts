@@ -1,65 +1,39 @@
-// Official places to report problems. Edit this list to add or update channels.
+// Official places to report problems. Names and links live here; the descriptions
+// for each language live under i18n/dictionaries (report.groups and report.channels).
+
+export type ChannelId = "myjalan" | "responsRakyat" | "sispaa" | "prasarana" | "ktmb" | "apad";
+
+export type ChannelGroupId = "roads" | "transit";
 
 export type ReportChannel = {
+  id: ChannelId;
   name: string;
-  runBy: string;
-  use: string;
   url: string;
 };
 
-export type ChannelGroup = {
-  title: string;
-  intro: string;
-  channels: ReportChannel[];
-};
-
-export const channelGroups: ChannelGroup[] = [
+export const channelGroups: { id: ChannelGroupId; channels: ReportChannel[] }[] = [
   {
-    title: "Roads, potholes and sidewalks",
-    intro: "Broken roads, missing covers, bad drainage and damaged walkways.",
+    id: "roads",
     channels: [
+      { id: "myjalan", name: "MyJalan", url: "https://www.kkr.gov.my/en/myjalan-app" },
       {
-        name: "MyJalan",
-        runBy: "Ministry of Works (KKR)",
-        use: "Report road defects with a photo and pin. Good for potholes, damaged signs and road furniture.",
-        url: "https://www.kkr.gov.my/en/myjalan-app",
-      },
-      {
+        id: "responsRakyat",
         name: "Respons Rakyat",
-        runBy: "Public Complaints Bureau (BPA)",
-        use: "One app for complaints to hundreds of government agencies, including local councils. Search “Respons Rakyat” in the App Store or Google Play.",
         url: "https://www.malaysia.gov.my/my/feedback/sistem-pengurusan-aduan-bersepadu-sispaa",
       },
       {
+        id: "sispaa",
         name: "SiSPAA",
-        runBy: "Public Complaints Bureau (BPA)",
-        use: "The web version of the government complaints system, if you prefer a browser to an app.",
         url: "https://pcb.spab.gov.my/eApps/sdmscasepool/SdmsCasePool/add.do?aplCode=ms",
       },
     ],
   },
   {
-    title: "Trains and buses",
-    intro: "Breakdowns, unsafe stations, missing first and last mile links.",
+    id: "transit",
     channels: [
-      {
-        name: "Prasarana / Rapid KL",
-        runBy: "Prasarana Malaysia",
-        use: "LRT, MRT, monorail and Rapid buses. Use the feedback or contact section on their site.",
-        url: "https://myrapid.com.my",
-      },
-      {
-        name: "KTMB",
-        runBy: "Keretapi Tanah Melayu Berhad",
-        use: "KTM Komuter, ETS and intercity rail.",
-        url: "https://www.ktmb.com.my",
-      },
-      {
-        name: "APAD",
-        runBy: "Land Public Transport Agency",
-        use: "The regulator for land public transport in Peninsular Malaysia. Escalate here when an operator doesn't respond.",
-        url: "https://www.apad.gov.my",
-      },
+      { id: "prasarana", name: "Prasarana / Rapid KL", url: "https://myrapid.com.my" },
+      { id: "ktmb", name: "KTMB", url: "https://www.ktmb.com.my" },
+      { id: "apad", name: "APAD", url: "https://www.apad.gov.my" },
     ],
   },
 ];
