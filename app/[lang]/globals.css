@@ -8,6 +8,7 @@
   --brand-ink: #ffffff;
   --accent: #f2b705;
   --focus: #1a4fd6;
+  --danger: #b3261e;
   --radius: 12px;
   font-size: 106.25%; /* 17px base, a little larger than the browser default */
 }
@@ -22,6 +23,7 @@
     --brand: #5cc29b;
     --brand-ink: #0d1a15;
     --focus: #8fb4ff;
+    --danger: #ff8a80;
   }
 }
 
@@ -45,6 +47,7 @@
   --brand-ink: #ffffff;
   --accent: #000000;
   --focus: #000000;
+  --danger: #9b0000;
 }
 
 :root[data-contrast="high"] .card,
@@ -423,6 +426,219 @@ a.card:hover {
 
 .advocate-links {
   margin-top: auto;
+}
+
+/* Community wall */
+
+.wall-grid {
+  margin-top: 2rem;
+}
+
+.report {
+  display: flex;
+  flex-direction: column;
+}
+
+.report h2 {
+  font-size: 1.15rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.report .tag {
+  align-self: flex-start;
+  margin: 0;
+}
+
+.report-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: var(--border);
+}
+
+.report-body {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.notice {
+  margin-top: 1.5rem;
+}
+
+.notice.error {
+  border: 2px solid var(--danger);
+}
+
+.notice.success {
+  border: 2px solid var(--brand);
+}
+
+.notice h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+.notice:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Forms */
+
+.report-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1.5rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.req {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.field input[type="text"],
+.field input[type="password"],
+.field input[type="file"],
+.field select,
+.field textarea {
+  font: inherit;
+  min-height: 48px;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--muted);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  width: 100%;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.field.checkbox {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.field.checkbox input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.15rem 0 0;
+  flex-shrink: 0;
+}
+
+.field.checkbox label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.field.checkbox .field-error {
+  flex-basis: 100%;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.report-form button[type="submit"] {
+  align-self: flex-start;
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.report-form button[disabled] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Moderation */
+
+.admin-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.admin-tabs .pill[aria-current="page"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-ink);
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-report {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .admin-report {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-report form button {
+  font: inherit;
+  cursor: pointer;
 }
 
 .channel-group {

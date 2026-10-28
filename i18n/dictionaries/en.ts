@@ -1,3 +1,4 @@
+import type { Category } from "@/lib/report-options";
 import type { AdvocateId, AdvocateKind, LinkType, Topic } from "@/data/advocates";
 import type { ChannelGroupId, ChannelId } from "@/data/report-channels";
 
@@ -12,6 +13,7 @@ const en = {
     report: "Report it",
     about: "About",
     directory: "Directory",
+    wall: "Community wall",
   },
   language: {
     label: "Language",
@@ -43,7 +45,7 @@ const en = {
       },
       {
         title: "Share what you face",
-        body: "A public wall of the sidewalks, crossings and stations that fail us every day. Coming soon.",
+        body: "A public wall of the sidewalks, crossings and stations that fail us every day.",
       },
       {
         title: "Hold leaders to account",
@@ -136,6 +138,76 @@ const en = {
       miros: "The government's road safety research institute. Publishes crash research and road safety data.",
     } as Record<AdvocateId, string>,
   },
+  wall: {
+    title: "Community wall",
+    lead: "Broken sidewalks, dangerous crossings, flooded underpasses and stations you can't reach on foot, shared by people across Malaysia.",
+    shareCta: "Share a problem",
+    empty: "Nothing here yet. Be the first to share a problem in your area.",
+    notReady: "The community wall is still being set up. Please check back soon.",
+    reviewNote: "Every post is checked by a volunteer before it appears here.",
+    reportedOn: "Shared on",
+    location: "Location",
+    categories: {
+      sidewalk: "Sidewalk or walkway",
+      crossing: "Pedestrian crossing",
+      pothole: "Pothole or road damage",
+      drainage: "Drain, cover or flooding",
+      lighting: "Street lighting",
+      accessibility: "Disabled (OKU) access",
+      transit: "Station or bus stop",
+      other: "Something else",
+    } as Record<Category, string>,
+    form: {
+      title: "Share a problem",
+      lead: "Tell everyone what you face. Your post will appear on the wall after a quick check.",
+      privacy: "We don't ask for your name, email or phone number. Location data hidden inside your photo is removed before it is saved.",
+      officialReminder: "This wall makes problems visible, but it doesn't send them to the authorities. Please also file an official report.",
+      officialLink: "See where to report",
+      guidelinesTitle: "Before you post",
+      guidelines: [
+        "Describe the place and the problem, not people. Don't name or accuse private individuals.",
+        "Make sure no faces or car number plates can be read in your photo.",
+        "Keep it honest and factual so it can be used to push for a fix.",
+      ],
+      required: "required",
+      optional: "optional",
+      category: "What kind of problem is it?",
+      chooseCategory: "Choose one",
+      state: "State",
+      chooseState: "Choose a state",
+      area: "Area or road name",
+      areaHint: "For example: Jalan Tun Razak near Hospital KL",
+      titleLabel: "Short title",
+      titleHint: "For example: No walkway from LRT station to the school",
+      description: "What's the problem?",
+      descriptionHint: "Who is at risk, how long has it been like this, and have you reported it before?",
+      photo: "Photo",
+      photoHint: "JPG, PNG or HEIC, up to 8 MB.",
+      photoAlt: "Describe the photo",
+      photoAltHint: "A short description for blind and low-vision visitors. For example: Broken walkway with a large hole next to a drain.",
+      agree: "I've followed the guidelines above, and this is a real problem I've seen.",
+      submit: "Send for review",
+      submitting: "Sending…",
+      errorSummary: "Please fix the following:",
+      errors: {
+        required: "This is required.",
+        tooShort: "This is too short.",
+        tooLong: "This is too long.",
+        invalid: "Please choose an option.",
+        photoTooBig: "The photo is bigger than 8 MB.",
+        photoType: "The photo must be an image file.",
+        agree: "Please confirm you've followed the guidelines.",
+        rateLimited: "You've shared several posts in a short time. Please try again in an hour.",
+        server: "Something went wrong on our side. Please try again.",
+        notReady: "Posting isn't open yet. Please check back soon.",
+      },
+      photoReattach: "If you added a photo, please attach it again.",
+      successTitle: "Thank you, your post has been sent",
+      successBody: "A volunteer will check it soon, and then it will appear on the wall.",
+      another: "Share another problem",
+      backToWall: "Back to the wall",
+    },
+  },
   about: {
     title: "About KakiLima",
     lead: "A kaki lima is the five-foot walkway in front of Malaysian shophouses: a space meant for people on foot. Too often today it is broken, blocked or missing entirely.",
@@ -150,7 +222,7 @@ const en = {
     ],
     whereTitle: "Where we are",
     where:
-      "We are just getting started. Right now you can find the official channels to report problems and a directory of people already speaking up. A public space to share what you face is on the way.",
+      "We are just getting started. Right now you can find the official channels to report problems and a directory of people already speaking up. You can also share what you face on the community wall.",
   },
 };
 
