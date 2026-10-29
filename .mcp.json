@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "shadcn": { "command": "npx", "args": ["-y", "shadcn@latest", "mcp"] },
+    "magicui": { "command": "npx", "args": ["-y", "@magicuidesign/mcp@latest"] },
+    "playwright": { "command": "npx", "args": ["-y", "@playwright/mcp@latest", "--headless", "--isolated"] },
+    "context7": { "command": "npx", "args": ["-y", "@upstash/context7-mcp@latest"] }
+  }
+}

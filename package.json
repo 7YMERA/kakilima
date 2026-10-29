@@ -9,15 +9,21 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "lucide-react": "^1.64.0",
+    "motion": "^14.7.1",
     "next": "16.4.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5"
   }
 }
