@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useActionState, useEffect, useRef } from "react";
+import { buttonVariants } from "@/components/ui/button";
 import { submitReport, type ErrorCode, type Field, type SubmitState } from "@/app/[lang]/wall/actions";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
+import { cn } from "@/lib/cn";
 import { categories, states } from "@/lib/report-options";
 
 type Props = {
@@ -14,6 +16,14 @@ type Props = {
 };
 
 const initial: SubmitState = { status: "idle" };
+
+const fieldClass = "flex flex-col gap-1.5";
+const labelClass = "font-bold";
+const markClass = "text-small font-normal text-muted";
+const hintClass = "text-small text-muted";
+const inputClass =
+  "min-h-12 w-full rounded-lg border-2 border-solid border-muted bg-surface px-3 py-2.5 text-text " +
+  "aria-[invalid=true]:border-danger";
 
 // Order matches the form, so the error summary reads top to bottom.
 const fieldOrder: Field[] = ["category", "state", "area", "title", "description", "photo", "photoAlt", "agree"];
@@ -31,14 +41,14 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
 
   if (state.status === "success") {
     return (
-      <div ref={successRef} tabIndex={-1} role="status" className="card notice success">
-        <h2>{t.successTitle}</h2>
-        <p>{t.successBody}</p>
-        <div className="actions">
-          <a href={`/${lang}/wall/new`} className="button primary">
+      <div ref={successRef} tabIndex={-1} role="status" className="edge mt-10 rounded-card border-2 border-brand bg-surface p-5">
+        <h2 className="text-h2 font-extrabold">{t.successTitle}</h2>
+        <p className="mt-2">{t.successBody}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <a href={`/${lang}/wall/new`} className={buttonVariants({ variant: "primary" })}>
             {t.another}
           </a>
-          <Link href={`/${lang}/wall`} className="button">
+          <Link href={`/${lang}/wall`} className={buttonVariants({ variant: "outline" })}>
             {t.backToWall}
           </Link>
         </div>
@@ -64,20 +74,20 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
   const errorText = (code: ErrorCode) => t.errors[code];
 
   return (
-    <form action={action} className="report-form" noValidate key={state.status === "error" ? state.attempt : 0}>
+    <form action={action} className="mt-10 flex flex-col gap-6" noValidate key={state.status === "error" ? state.attempt : 0}>
       {state.status === "error" && (
-        <div ref={summaryRef} tabIndex={-1} role="alert" className="card notice error">
+        <div ref={summaryRef} tabIndex={-1} role="alert" className="edge rounded-card border-2 border-danger bg-surface p-5">
           {state.formError ? (
-            <p>{errorText(state.formError)}</p>
+            <p className="font-bold">{errorText(state.formError)}</p>
           ) : (
             <>
-              <h2>{t.errorSummary}</h2>
-              <ul>
+              <h2 className="text-lg font-bold">{t.errorSummary}</h2>
+              <ul className="mt-2 list-disc space-y-1 pl-5">
                 {fieldOrder
                   .filter((f) => errors[f])
                   .map((f) => (
                     <li key={f}>
-                      <a href={`#${f}`}>
+                      <a href={`#${f}`} className="font-bold text-danger underline">
                         {labelFor[f]}: {errorText(errors[f]!)}
                       </a>
                     </li>
@@ -85,23 +95,24 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
               </ul>
             </>
           )}
-          <p className="small">{t.photoReattach}</p>
+          <p className="mt-3 text-small text-muted">{t.photoReattach}</p>
         </div>
       )}
 
       <input type="hidden" name="locale" value={lang} />
       {/* Hidden from people and screen readers; only bots fill it in. */}
-      <div className="honeypot" aria-hidden="true">
+      <div className="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="field">
-        <label htmlFor="category">
-          {t.category} <span className="req">({t.required})</span>
+      <div className={fieldClass}>
+        <label htmlFor="category" className={labelClass}>
+          {t.category} <span className={markClass}>({t.required})</span>
         </label>
         <select
           id="category"
+className={inputClass}
           name="category"
           required
           defaultValue={values.category ?? ""}
@@ -120,13 +131,14 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         {err("category") && <FieldError id="category-error" text={errorText(err("category")!)} />}
       </div>
 
-      <div className="field-row">
-        <div className="field">
-          <label htmlFor="state">
-            {t.state} <span className="req">({t.required})</span>
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div className={fieldClass}>
+          <label htmlFor="state" className={labelClass}>
+            {t.state} <span className={markClass}>({t.required})</span>
           </label>
           <select
             id="state"
+className={inputClass}
             name="state"
             required
             defaultValue={values.state ?? ""}
@@ -145,15 +157,16 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
           {err("state") && <FieldError id="state-error" text={errorText(err("state")!)} />}
         </div>
 
-        <div className="field">
-          <label htmlFor="area">
-            {t.area} <span className="req">({t.required})</span>
+        <div className={fieldClass}>
+          <label htmlFor="area" className={labelClass}>
+            {t.area} <span className={markClass}>({t.required})</span>
           </label>
-          <p id="area-hint" className="hint">
+          <p id="area-hint" className={hintClass}>
             {t.areaHint}
           </p>
           <input
             id="area"
+className={inputClass}
             name="area"
             type="text"
             required
@@ -167,15 +180,16 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         </div>
       </div>
 
-      <div className="field">
-        <label htmlFor="title">
-          {t.titleLabel} <span className="req">({t.required})</span>
+      <div className={fieldClass}>
+        <label htmlFor="title" className={labelClass}>
+          {t.titleLabel} <span className={markClass}>({t.required})</span>
         </label>
-        <p id="title-hint" className="hint">
+        <p id="title-hint" className={hintClass}>
           {t.titleHint}
         </p>
         <input
           id="title"
+className={inputClass}
           name="title"
           type="text"
           required
@@ -188,15 +202,16 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         {err("title") && <FieldError id="title-error" text={errorText(err("title")!)} />}
       </div>
 
-      <div className="field">
-        <label htmlFor="description">
-          {t.description} <span className="req">({t.required})</span>
+      <div className={fieldClass}>
+        <label htmlFor="description" className={labelClass}>
+          {t.description} <span className={markClass}>({t.required})</span>
         </label>
-        <p id="description-hint" className="hint">
+        <p id="description-hint" className={hintClass}>
           {t.descriptionHint}
         </p>
         <textarea
           id="description"
+className={inputClass}
           name="description"
           required
           rows={6}
@@ -208,15 +223,16 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         {err("description") && <FieldError id="description-error" text={errorText(err("description")!)} />}
       </div>
 
-      <div className="field">
-        <label htmlFor="photo">
-          {t.photo} <span className="req">({t.optional})</span>
+      <div className={fieldClass}>
+        <label htmlFor="photo" className={labelClass}>
+          {t.photo} <span className={markClass}>({t.optional})</span>
         </label>
-        <p id="photo-hint" className="hint">
+        <p id="photo-hint" className={hintClass}>
           {t.photoHint}
         </p>
         <input
           id="photo"
+className={inputClass}
           name="photo"
           type="file"
           accept="image/*"
@@ -226,15 +242,16 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         {err("photo") && <FieldError id="photo-error" text={errorText(err("photo")!)} />}
       </div>
 
-      <div className="field">
-        <label htmlFor="photoAlt">
-          {t.photoAlt} <span className="req">({t.optional})</span>
+      <div className={fieldClass}>
+        <label htmlFor="photoAlt" className={labelClass}>
+          {t.photoAlt} <span className={markClass}>({t.optional})</span>
         </label>
-        <p id="photoAlt-hint" className="hint">
+        <p id="photoAlt-hint" className={hintClass}>
           {t.photoAltHint}
         </p>
         <input
           id="photoAlt"
+className={inputClass}
           name="photoAlt"
           type="text"
           maxLength={200}
@@ -246,28 +263,29 @@ export default function ReportForm({ lang, t, categoryLabels }: Props) {
         {err("photoAlt") && <FieldError id="photoAlt-error" text={errorText(err("photoAlt")!)} />}
       </div>
 
-      <div className="field checkbox">
+      <div className="flex flex-wrap items-start gap-3">
         <input
           id="agree"
           name="agree"
           type="checkbox"
+          className="mt-0.5 size-6 shrink-0 accent-brand"
           aria-invalid={Boolean(err("agree"))}
           aria-describedby={describedBy("agree", false)}
         />
-        <label htmlFor="agree">{t.agree}</label>
-        {err("agree") && <FieldError id="agree-error" text={errorText(err("agree")!)} />}
+        <label htmlFor="agree" className="flex-1">{t.agree}</label>
+        {err("agree") && <FieldError id="agree-error" text={errorText(err("agree")!)} className="basis-full" />}
       </div>
 
-      <button type="submit" className="button primary" disabled={pending} aria-disabled={pending}>
+      <button type="submit" className={buttonVariants({ variant: "primary", className: "self-start" })} disabled={pending} aria-disabled={pending}>
         {pending ? t.submitting : t.submit}
       </button>
     </form>
   );
 }
 
-function FieldError({ id, text }: { id: string; text: string }) {
+function FieldError({ id, text, className }: { id: string; text: string; className?: string }) {
   return (
-    <p id={id} className="field-error">
+    <p id={id} className={cn("font-bold text-danger", className)}>
       <span aria-hidden="true">⚠ </span>
       {text}
     </p>

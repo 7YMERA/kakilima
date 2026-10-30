@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Camera } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
 import { hasLocale, htmlLang } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isDatabaseConfigured } from "@/lib/db";
@@ -33,38 +35,51 @@ export default async function WallPage({ params }: PageProps<"/[lang]/wall">) {
   const date = new Intl.DateTimeFormat(htmlLang[lang], { dateStyle: "medium", timeZone: "Asia/Kuala_Lumpur" });
 
   return (
-    <div className="container section">
-      <h1>{t.title}</h1>
-      <p className="lead">{t.lead}</p>
-      <div className="actions">
-        <Link href={`/${lang}/wall/new`} className="button primary">
+    <div className="mx-auto max-w-5xl px-4 pt-12 sm:pt-16">
+      <h1 className="text-h1 font-extrabold">{t.title}</h1>
+      <p className="mt-4 max-w-2xl text-lead text-muted">{t.lead}</p>
+      <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <Link href={`/${lang}/wall/new`} className={buttonVariants({ variant: "primary" })}>
+          <Camera aria-hidden="true" />
           {t.shareCta}
         </Link>
+        <p className="text-small text-muted">{t.reviewNote}</p>
       </div>
-      <p className="muted small">{t.reviewNote}</p>
 
-      {reports === null ? (
-        <p className="card notice">{t.notReady}</p>
-      ) : reports.length === 0 ? (
-        <p className="card notice">{t.empty}</p>
+      {reports === null || reports.length === 0 ? (
+        <p className="edge mt-10 rounded-card border-border bg-surface p-5">{reports === null ? t.notReady : t.empty}</p>
       ) : (
-        <ul className="grid plain-list wall-grid">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reports.map((r) => (
             <li key={r.id}>
-              <article className="card report" aria-labelledby={`report-${r.id}`}>
+              <article
+                aria-labelledby={`report-${r.id}`}
+                className="edge flex h-full flex-col overflow-hidden rounded-card border-border bg-surface"
+              >
                 {r.photoUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={r.photoUrl} alt={r.photoAlt || r.title} loading="lazy" className="report-photo" />
+                  <img
+                    src={r.photoUrl}
+                    alt={r.photoAlt || r.title}
+                    loading="lazy"
+                    className="aspect-[4/3] w-full bg-surface-sunk object-cover"
+                  />
                 )}
-                <p className="tag">{t.categories[r.category]}</p>
-                <h2 id={`report-${r.id}`}>{r.title}</h2>
-                <p className="report-meta muted small">
-                  <span className="visually-hidden">{t.location}: </span>
-                  {r.area}, {r.state}
-                  <br />
-                  {t.reportedOn} <time dateTime={r.createdAt.toISOString()}>{date.format(r.createdAt)}</time>
-                </p>
-                <p className="report-body">{r.description}</p>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="edge self-start rounded-full border-border bg-surface-sunk px-2.5 py-0.5 text-label font-semibold text-muted">
+                    {t.categories[r.category]}
+                  </p>
+                  <h2 id={`report-${r.id}`} className="mt-3 text-lg font-bold">
+                    {r.title}
+                  </h2>
+                  <p className="mt-1 text-small text-muted">
+                    <span className="sr-only">{t.location}: </span>
+                    {r.area}, {r.state}
+                    <br />
+                    {t.reportedOn} <time dateTime={r.createdAt.toISOString()}>{date.format(r.createdAt)}</time>
+                  </p>
+                  <p className="mt-3 whitespace-pre-line [overflow-wrap:anywhere]">{r.description}</p>
+                </div>
               </article>
             </li>
           ))}
