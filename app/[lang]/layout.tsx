@@ -36,6 +36,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const dict = await getDictionary(lang);
   const navLinks = [
     { href: `/${lang}/report`, text: dict.nav.report },
+    { href: `/${lang}/directory`, text: dict.nav.directory },
     { href: `/${lang}/about`, text: dict.nav.about },
   ];
 

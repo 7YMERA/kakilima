@@ -12,6 +12,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const t = (await getDictionary(lang)).home;
+  // One entry per pillar; null means that part is not built yet.
+  const pillarLinks: (string | null)[] = [`/${lang}/report`, `/${lang}/directory`, null, null];
 
   return (
     <>
@@ -52,12 +54,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           {t.buildingTitle}
         </h2>
         {/*
-          The roadmap is drawn as a rail line: the first station is open (solid),
+          The roadmap is drawn as a rail line: stations that are open are solid and link to their page,
           the rest are still being built (hollow, dashed track).
         */}
         <ol className="relative mt-8 grid gap-6 lg:grid-cols-4 lg:gap-5">
           {t.pillars.map((p, i) => {
-            const open = i === 0;
+            const href = pillarLinks[i];
+            const open = Boolean(href);
+            const trackOpen = open && Boolean(pillarLinks[i + 1]);
             return (
               <li
                 key={p.title}
@@ -68,7 +72,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   className={cn(
                     "absolute top-8 bottom-[-1.5rem] left-[calc(1rem-1.5px)] w-[3px] lg:top-[calc(1rem-1.5px)] lg:right-[-1.25rem] lg:bottom-auto lg:left-8 lg:h-[3px] lg:w-auto",
                     i === t.pillars.length - 1 && "hidden",
-                    open
+                    trackOpen
                       ? "bg-brand"
                       : "bg-[repeating-linear-gradient(to_bottom,var(--border)_0_6px,transparent_6px_11px)] lg:bg-[repeating-linear-gradient(to_right,var(--border)_0_6px,transparent_6px_11px)]",
                   )}
@@ -91,9 +95,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   )}
                 >
                   <h3 className="mb-2 text-lg font-bold">
-                    {open ? (
+                    {href ? (
                       <Link
-                        href={`/${lang}/report`}
+                        href={href}
                         className="stretched-link text-text no-underline after:absolute after:inset-0 after:rounded-card group-hover:text-brand"
                       >
                         {p.title}

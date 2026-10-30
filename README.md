@@ -21,6 +21,7 @@ The site is available in English (`/en`), Bahasa Melayu (`/ms`), Chinese (`/zh`)
 
 - All page text lives in `i18n/dictionaries/`, one file per language. `en.ts` defines the shape, so TypeScript flags any text missing from the other languages.
 - Official reporting channel names and links live in `data/report-channels.ts`. Their descriptions are under `report.channels` in each dictionary.
+- Directory entries (names, topics, links) live in `data/advocates.ts`. Their descriptions are under `directory.entries` in each dictionary.
 
 ## Styling
 
