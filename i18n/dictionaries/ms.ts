@@ -20,6 +20,11 @@ const ms: Dictionary = {
     sizes: { normal: "Biasa", large: "Besar", larger: "Lebih besar" },
     contrast: "Kontras tinggi",
   },
+  cta: {
+    title: "Nampak kaki lima rosak atau lintasan berbahaya?",
+    body: "Beritahu pihak yang boleh membaikinya. Hanya mengambil masa beberapa minit, dan kami tunjukkan saluran rasmi yang betul.",
+    button: "Laporkan",
+  },
   footer: {
     disclaimer: "KakiLima ialah projek komuniti bebas. Kami tidak bergabung dengan mana-mana agensi kerajaan.",
   },
@@ -30,6 +35,8 @@ const ms: Dictionary = {
     ctaReport: "Laporkan masalah",
     ctaAbout: "Kenapa KakiLima",
     buildingTitle: "Apa yang sedang kami bina",
+    statusOpen: "Dibuka sekarang",
+    statusSoon: "Akan datang",
     pillars: [
       {
         title: "Lapor dengan betul",

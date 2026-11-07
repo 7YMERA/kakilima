@@ -19,6 +19,11 @@ const zh: Dictionary = {
     sizes: { normal: "标准", large: "大", larger: "特大" },
     contrast: "高对比度",
   },
+  cta: {
+    title: "看到破损的人行道或危险的路口了吗？",
+    body: "告诉能解决问题的人。只需几分钟，我们会为你指出正确的官方渠道。",
+    button: "立即举报",
+  },
   footer: {
     disclaimer: "KakiLima 是一个独立的社区项目，与任何政府机构无关。",
   },
@@ -29,6 +34,8 @@ const zh: Dictionary = {
     ctaReport: "举报问题",
     ctaAbout: "为什么是 KakiLima",
     buildingTitle: "我们正在打造的",
+    statusOpen: "现已开放",
+    statusSoon: "即将推出",
     pillars: [
       {
         title: "正确地举报",
