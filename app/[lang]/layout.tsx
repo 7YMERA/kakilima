@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import DisplaySettings, { displayInitScript } from "@/components/DisplaySettings";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Logo from "@/components/Logo";
 import MainNav from "@/components/MainNav";
+import { buttonVariants } from "@/components/ui/button";
 import { hasLocale, htmlLang, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import "@fontsource-variable/atkinson-hyperlegible-next";
@@ -72,7 +74,27 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <main id="main" tabIndex={-1} className="flex-1">
           {children}
         </main>
-        <footer className="edge mt-16 border-x-0 border-b-0 border-border bg-surface-sunk">
+        <section aria-labelledby="cta-title" className="mt-16 bg-text text-bg">
+          <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-12 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-xl">
+              <h2 id="cta-title" className="text-h2 font-extrabold tracking-tight">
+                {dict.cta.title}
+              </h2>
+              <p className="mt-2 text-lg">{dict.cta.body}</p>
+            </div>
+            <Link
+              href={`/${lang}/report`}
+              className={buttonVariants({
+                variant: "inverse",
+                className: "sm:shrink-0",
+              })}
+            >
+              {dict.cta.button}
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+        <footer className="edge border-x-0 border-b-0 border-border bg-surface-sunk">
           <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-start sm:justify-between">
             <div className="max-w-md">
               <Logo />

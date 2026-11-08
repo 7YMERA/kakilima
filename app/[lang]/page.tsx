@@ -90,6 +90,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       : "border-border bg-surface",
                   )}
                 >
+                  <p
+                    className={cn(
+                      "edge mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-label font-bold tracking-[0.08em] uppercase",
+                      open ? "border-brand bg-brand text-brand-ink" : "border-border text-muted",
+                    )}
+                  >
+                    {open && (
+                      <span aria-hidden="true" className="relative inline-flex size-2">
+                        <span className="absolute inset-0 animate-pulse-ring rounded-full bg-brand-ink" />
+                        <span className="relative size-2 rounded-full bg-brand-ink" />
+                      </span>
+                    )}
+                    {open ? t.statusOpen : t.statusSoon}
+                  </p>
                   <h3 className="mb-2 text-lg font-bold">
                     {open ? (
                       <Link

@@ -20,6 +20,11 @@ const en = {
     sizes: { normal: "Normal", large: "Large", larger: "Larger" },
     contrast: "High contrast",
   },
+  cta: {
+    title: "Seen a broken pavement or a dangerous crossing?",
+    body: "Tell the people who can fix it. It takes a few minutes, and we point you to the right official channel.",
+    button: "Report it",
+  },
   footer: {
     disclaimer: "KakiLima is an independent community project. We are not affiliated with any government agency.",
   },
@@ -30,6 +35,8 @@ const en = {
     ctaReport: "Report a problem",
     ctaAbout: "Why KakiLima",
     buildingTitle: "What we're building",
+    statusOpen: "Open now",
+    statusSoon: "Coming soon",
     pillars: [
       {
         title: "Report it properly",

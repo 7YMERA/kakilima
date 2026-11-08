@@ -10,6 +10,8 @@ const base =
 const variants = {
   primary: "edge border-brand bg-brand text-brand-ink hover:border-brand-hover hover:bg-brand-hover",
   outline: "edge border-border bg-surface text-text hover:border-brand hover:bg-brand-soft",
+  // For use on the inverted (bg-text) band; the bg-coloured border keeps a boundary in high contrast.
+  inverse: "edge border-bg bg-accent text-accent-ink hover:opacity-90",
   ghost: "border-0 bg-transparent text-text hover:bg-brand-soft hover:text-brand",
 };
 
