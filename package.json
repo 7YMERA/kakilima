@@ -9,14 +9,17 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.2",
     "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "lucide-react": "^1.64.0",
     "motion": "^14.7.1",
     "next": "16.4.3",
+    "postgres": "^3.4.9",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
